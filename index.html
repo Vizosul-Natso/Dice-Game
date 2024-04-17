@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="icon" type="image/png" href="https://seekicon.com/free-icon-download/star_32.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- css -->
+    <style>
+        html{
+    box-sizing: border-box;
+}
+body{
+    background-color:black;
+    margin:0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.game-container{
+    margin-top: 4vh;
+    border: 6px dashed rgb(63, 248, 109);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 60vw;
+}
+h1{margin-top: 10px;
+    color: rgb(65, 245, 20);
+    font-family: cursive;
+    font-size: 40px;
+}
+h2{
+    color: rgb(78, 241, 14);
+    font-family: cursive;
+    font-size: 30px;
+}
+.head{
+    margin-top: -30px;
+    display: inline-flex;
+    gap: 20vw;
+    height: auto;
+}
+.sub-container{
+    display: flex;
+    gap: 20px;
+
+
+}
+.img-container{
+    border: 0px solid rgb(75, 252, 5);
+    height: 40vh;
+    width: 25vw;
+    box-shadow: 1px 3px 3px 4px rgb(16, 226, 44) ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    height: 30vh;
+    width: 20vw;
+}
+#roll{
+    margin-top: 5vh;
+    height: 20vh;
+    width: 10vw;
+    align-content: center;
+    color: rgb(7, 7, 7);
+    font-family: cursive;
+    background-color: rgb(59, 243, 13);
+    box-shadow: 0px 3px 4px 4px rgb(255, 255, 255);
+    border-radius: 10px;
+    border: none;
+}
+#roll:hover{
+    transform: translateY(1px)
+}
+
+@media (max-width:800px) {
+    .game-container{
+        margin-top: 5vh;
+        border: 6px dashed rgb(63, 248, 109);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 90vh;
+        width: 90vw;
+    }
+    #roll{
+        margin-top: 5vh;
+        height: 10vh;
+        width: 40vw;
+        align-content: center;
+        color: rgb(7, 7, 7);
+        font-family: cursive;
+        background-color: rgb(59, 243, 13);
+        box-shadow: 0px 3px 4px 4px rgb(255, 255, 255);
+        border-radius: 10px;
+        border: none;
+    }
+}
+
+    </style>
+</head>
+<body>
+   <div class="game-container">
+        <h1 id="title">Diece Game</h1>
+            <div class="head"><h2>Player 1</h2>
+                <h2>Player 2</h2></div>
+            <div class="sub-container">
+                <div id="player1" class="img-container">
+                    <img id="p1-img" src="https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-one.svg" alt="">
+                </div>
+                <div id="player2" class="img-container">
+                    <img id="p2-img" src="https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-two.svg" alt="">
+                </div>
+            </div>
+            <button id="roll" onclick="rollDices()">Roll Diece</button>
+
+        <h2 id="result">Player1 wins</h2>
+   </div>
+
+ 
+
+
+
+<!-- script -->
+<script >
+    
+let roll = document.getElementById('roll');
+let p1 = document.getElementById('player1');
+let p2 = document.getElementById('player2');
+let imgP1 = document.getElementById('p1-img');
+let imgP2 = document.getElementById('p2-img');
+let result = document.getElementById('result');
+
+let dieceP1 = 1;
+let dieceP2 = 2;
+
+function getRandomNumbers(){
+    let a = Math.floor(Math.random()*7);
+    if(a>0){
+        return a;
+    }else{
+        return a+1;
+    }
+}
+
+function setImagesP1(){
+    switch(dieceP1){
+        case 1: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-one.svg")
+                break;
+        case 2: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-two.svg")
+                break;
+        case 3: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-three.svg")
+                break;
+        case 4: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-four.svg")
+                break;
+        case 5: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-five.svg")
+                break;
+        case 6: imgP1.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-six.svg")
+                break;
+        default: alert("error");
+                break;
+    }
+}
+
+function setImagesP2(){
+    switch(dieceP2){
+        case 1: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-one.svg")
+                break;
+        case 2: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-two.svg")
+                break;
+        case 3: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-three.svg")
+                break;
+        case 4: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-four.svg")
+                break;
+        case 5: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-five.svg")
+                break;
+        case 6: imgP2.setAttribute("src","https://github.com/Vizosul-Natso/SourceFile/blob/main/dice-six-faces-six.svg")
+                break;
+        default: alert("error");
+                break;
+    }
+}
+
+function rollDices(){
+    dieceP1 = getRandomNumbers();
+    dieceP2 = getRandomNumbers();
+
+    setImagesP1();
+    setImagesP2();
+
+    console.log(dieceP1);
+    console.log(dieceP2);
+
+    if(dieceP1>dieceP2){
+        result.textContent = "Player 1 WINS..!";
+    }else if(dieceP2>dieceP1){
+        result.textContent = "Player 2 WINS..!";
+    }else{
+        result.textContent = "Draw";
+    }
+}
+
+</script>
+</body>
+</html>
